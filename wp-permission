@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#check weather exist or not
+userExist()
+{
+  getent passwd $1 > /dev/null 2&>1
+  RES=$?
+
+if [ $RES -eq 0 ]; then
+    return 0
+else
+    return 1
+fi
+}
+
+#prompt for username
+usernameExist=0
+until [ $usernameExist -eq 1 ]
+do
+  read -p "Enter username to create user for wordpress :" username
+  userExist $username
+  usernameExist=$?
+  if [ $usernameExist -eq 0 ]; then
+    echo " User already exist, try again.."
+  fi
+done
+
+#prompt for password
+read -p "Enter password for the user $username : " password
+passwd $username
