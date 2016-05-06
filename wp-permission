@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#https://support.rackspace.com/how-to/how-to-add-linux-user-with-document-root-permissions/
 #check weather exist or not
 userExist()
 {
